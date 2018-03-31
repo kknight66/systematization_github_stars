@@ -205,6 +205,24 @@ DB_PASSWORD=passwd
 php artisan migrate # 数据库迁移 生成 未创建的表
 ```
 
+- Enable Email (For "Forgot Your Password & Reset Your Password")
+
+```bash
+sudo vim .env # 编辑 .env 文档
+  1 APP_NAME=yourAppName
+  2 APP_ENV=local
+  3 APP_KEY=yourkey
+  4 APP_DEBUG=true
+  5 APP_LOG_LEVEL=debug
+  6 APP_URL=Your EC2 address
+ 25 MAIL_DRIVER=smtp
+ 26 MAIL_HOST=smtp.gmail.com
+ 27 MAIL_PORT=587
+ 28 MAIL_USERNAME=yourUsername
+ 29 MAIL_PASSWORD=yourPassword
+ 30 MAIL_ENCRYPTION=tls
+```
+
 
 
 ### With Docker
@@ -220,10 +238,17 @@ php artisan migrate # 数据库迁移 生成 未创建的表
 ```
 - composer 类文件 composer.json , composer.lock 
 (PHP 项目包管理系统类似于 ruby:gem ; python:pip ; java:maven;javascript:npm)
-- /public 放置 html js css
-- /resource 放置 html 模板文件
+- /public 放置 js & css
+	/js app.js
+	/css Bootstrap v3.3.7
+- /resource 放置 前端资源
+	- /views 放置 PHP 模板
 - /vendor 放置 在 composer.json 中 描述的依赖库
 - /routes 放置 描述 routes rules 的文件 
+- /app 后端相关文件
+	- /Console 用于终端命令行
+	- /Exceptions 异常
+	- /Http/Controller 放置Controller 用于(MVC) 
 ```
 
 
