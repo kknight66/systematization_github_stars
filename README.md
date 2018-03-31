@@ -187,7 +187,25 @@ composer create-project laravel/laravel SysGithubStar ^5.5
   service apache2 restart # 重启 apache
   ```
 
-  ​
+- Enable Auth 
+
+```bash
+./artisan | grep "auth" # 观看和 auth 相关的命令行参数 
+php artisan make:auth #  Scaffold basic login and registration views and routes
+ls -al # 可以看到 .env 已被创建
+mysql -u root -p passwd # 进入数据库 并 创建一个 以 utf8mb4 为默认格式的新库
+> CREATE DATABASE `sysgithubstar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+sudo vim .env # 编辑 .env 文档
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sysgithubstar
+DB_USERNAME=root
+DB_PASSWORD=passwd
+php artisan migrate # 数据库迁移 生成 未创建的表
+```
+
+
 
 ### With Docker
 
