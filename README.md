@@ -6,9 +6,13 @@
 
 -  http://asdfasdfasdf
 
+---
+
 ### Screenshots 
 
 [](***.gif)
+
+---
 
 ### Technology stack
 
@@ -19,6 +23,8 @@
 - Ad < Docker : Virtualization container
 - Ad < Laravel : PHP Framework
 - Ad < Vue.js : Framework
+
+---
 
 ###  Characteristics & Requirements 
 
@@ -155,14 +161,64 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 - Install Laravel
 
 ```bash
-composer create-project laravel/laravel learnlaravel5 ^5.5
+composer create-project laravel/laravel SysGithubStar ^5.5
 ```
+
+- Install Apache
+
+- 配置 Apache 配置文件
+
+  ```
+  cd /etc/apache2/
+  cd sites-available/
+  sudo vim 000-default.conf
+  # 更改 为 
+  DocumentRoot /var/www/html/SysGithubStar/public/
+  ```
+
+  ​
+
+- Enable Apache rewrite mod ; make sure Laravel 's Route rules work.
+
+  ```bash
+  sudo a2enmod rewrite # 引入Mod
+  sudo vim apache2.conf # 更改 apache 配置文件
+  # 将 <Directory /var/www/> </Directory> 中 AllowOverride 项 改成 AllowOverride all
+  service apache2 restart # 重启 apache
+  ```
+
+  ​
 
 ### With Docker
 
 - Install Docker
 
+
+
 ---
+
+### 项目组织
+
+```
+- composer 类文件 composer.json , composer.lock 
+(PHP 项目包管理系统类似于 ruby:gem ; python:pip ; java:maven;javascript:npm)
+- /public 放置 html js css
+- /resource 放置 html 模板文件
+- /vendor 放置 在 composer.json 中 描述的依赖库
+- /routes 放置 描述 routes rules 的文件 
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Other
 
