@@ -223,6 +223,14 @@ sudo vim .env # 编辑 .env 文档
  30 MAIL_ENCRYPTION=tls
 ```
 
+- Create New Table
+
+```
+php artisan make:migration create_star_table
+php artisan make:migration create_tag_table
+php artisan migrate
+```
+
 
 
 ### With Docker
