@@ -238,7 +238,6 @@ php artisan migrate
 - Install Docker
 
 
-
 ---
 
 ### 项目组织
@@ -259,7 +258,37 @@ php artisan migrate
 	- /Http/Controller 放置Controller 用于(MVC) 
 ```
 
+## Route
 
+```
++--------+----------+-------------------------------+------------------+-------------------------------------------------------------------------+--------------+
+| Domain | Method   | URI                           | Name             | Action                                                                  | Middleware   |
++--------+----------+-------------------------------+------------------+-------------------------------------------------------------------------+--------------+
+|        | GET|HEAD | /                             |                  | Closure                                                                 | web          |
+|        | GET|HEAD | api/user                      |                  | Closure                                                                 | api,auth:api |
+|        | GET|HEAD | home                          | home             | App\Http\Controllers\StarController@viewHome                            | web          |
+|        | GET|HEAD | login                         | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                 | web,guest    |
+|        | POST     | login                         |                  | App\Http\Controllers\Auth\LoginController@login                         | web,guest    |
+|        | POST     | logout                        | logout           | App\Http\Controllers\Auth\LoginController@logout                        | web          |
+|        | POST     | password/email                | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail   | web,guest    |
+|        | POST     | password/reset                |                  | App\Http\Controllers\Auth\ResetPasswordController@reset                 | web,guest    |
+|        | GET|HEAD | password/reset                | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  | web,guest    |
+|        | GET|HEAD | password/reset/{token}        | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm         | web,guest    |
+|        | POST     | register                      |                  | App\Http\Controllers\Auth\RegisterController@register                   | web,guest    |
+|        | GET|HEAD | register                      | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm       | web,guest    |
+|        | GET|HEAD | star/data/{gitHubName}/{page} |                  | App\Http\Controllers\StarController@getJsonByGitHubNameAndPageAndUserId | web          |
+|        | POST     | star/database/sync            |                  | App\Http\Controllers\StarController@sync                                | web          |
+|        | GET|HEAD | star/num/{gitHubName}         |                  | App\Http\Controllers\StarController@getPageNumByGitHubName              | web          |
+|        | POST     | tag/database/sync             |                  | App\Http\Controllers\TagController@sync                                 | web          |
+|        | GET|HEAD | test/download                 | download         | App\Http\Controllers\StarController@download                            | web          |
+|        | GET|HEAD | test/view/{gitHubName}/{page} | searchView       | App\Http\Controllers\StarController@viewByUserNameAndPageAndUserId      | web          |
++--------+----------+-------------------------------+------------------+-------------------------------------------------------------------------+--------------+
+
+```
+
+## Route-Pic
+
+[]()
 
 
 
