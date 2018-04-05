@@ -313,7 +313,7 @@ php artisan migrate
 
 ## Route-Pic
 
-[route](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/route.png)
+![route](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/route.png)
 
 
 
