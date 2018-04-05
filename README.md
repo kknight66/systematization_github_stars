@@ -30,122 +30,147 @@
 
 - [x] The web application use `HTML_5` and `CSS_3` for page content and layout.
 
-> File path : "/";
+> File path : "/SysGithubStar/resources/views/*";
 >
-> Line : 0 ;
+> Line : [begin : end] ;
 >
-> Other prompt : " ";
+> Other prompt : "it's very clear.";
 
 - [x] The web application have a consistent design/interface.
 
-> File path : "/";
+> File path : "/SysGithubStar/resources/views/*";
 >
-> Line : 0 ;
+> Line : [begin : end] ;
 >
-> Other prompt : " ";
+> Other prompt : "it's very clear.";
 
 - [x] The web application is well-structured and logically organized. 
 
-> File path : "/";
+> File path : "/SysGithubStar/resources/views/*";
 >
-> Line : 0 ;
+> Line : [@yield('content')];
 >
-> Other prompt : " ";
+> Other prompt : "Use blade As Templating engine, it's well-structured and logically organized";
+>
+> Blade is the simple, yet powerful templating engine provided with Laravel. Unlike other popular PHP templating engines, Blade does not restrict you from using plain PHP code in your views. In fact, all Blade views are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade view files use the `.blade.php` file extension and are typically stored in the `resources/views` directory.
 
 - [x] LogIn & LogOut < Default { `Username : test `; `Passwd : pass `}.
 
-> File path : "/";
->
-> Line : 0 ;
->
-> Other prompt : " ";
+> It's very clear.
 
 - [x] The web application utilize PHP and proper PHP techniques.
 
-> File path : "/";
+> File path : "/SysGithubStar/app/Http/Controllers/StarController.php";
 >
-> Line : 0 ;
+> Line : [Begin : End] ;
 >
-> Other prompt : " ";
 
 - [x] The web application properly use `GET` and `POST`.
 
-> File path : "/";
+> File path : "/SysGithubStar/routes/web.php";
 >
-> Line : 0 ;
+> ```
+> Route::get('/', function () {
+>     return view('test.welcome');
+> });
 >
-> Other prompt : " ";
+> //Authentication route
+> Auth::routes();
+>
+> Route::get('/home', 'StarController@viewHome')->name('home');
+>
+> //JSON Search API 
+> //Do not need to consider security, use GET method
+> Route::get('/star/data/{gitHubName}/{page}', 'StarController@getJsonByGitHubNameAndPageAndUserId'); //Unregistered person without userId Not counted in database
+> Route::get('/star/num/{gitHubName}', 'StarController@getPageNumByGitHubName'); //Get the number of pages corresponding to GitHubName
+>
+> //Database synchronization routing 
+> Route::post('/star/database/sync', 'StarController@sync'); // Used to synchronize Star accept JSON parameters example {}
+> Route::post('/tag/database/sync', 'TagController@sync'); // Used to synchronize Tag accept JSON parameters example {}
+>
+> Route::get('/test/view/{gitHubName}/{page}','StarController@viewByUserNameAndPageAndUserId')->name('searchView'); //Search View route
+> Route::get('/test/download','StarController@download')->name('download'); // Used to download files offline
+> ```
+>
+> 
+>
+> Other prompt : " Use properly use `GET` and `POST`.";
 
 - [x] Supply appropriate and informative feedback if the information entered is not complete or correct.
 
-> File path : "/";
+> File path : "/SysGithubStar/resources/views/auth/*";
 >
-> Line : 0 ;
->
-> Other prompt : " ";
+> Other prompt : "Try to register and login, you could see the feedback";
 
 - [x] The web application contain a page where there are multiple photos presented on the page. 
 
-> File path : "/";
+> URL : "/";
 >
-> Line : 0 ;
->
-> Other prompt : " ";
+> Other prompt : "It's very clear.";
 
 - [x] The web application contain a page that contains a YouTube video embedded in the page.
 
-> File path : "/";
+> URL : "/";
 >
-> Line : 0 ;
->
-> Other prompt : " ";
+> Other prompt : "It's very clear that the Install video is embedded in the page";
 
 - [x] The web application utilize JavaScript and proper JavaScript techniques.
 
-> File path : "/";
+> File path : "/SysGithubStar/public/js/search.js";
 >
-> Line : 0 ;
+> Line : [Begin : End] ;
 >
-> Other prompt : " ";
+> Other prompt : "It's very clear.";
 
 - [x] The web application utilize jQuery and proper jQuery techniques.
 
-> File path : "/";
+> File path : "/SysGithubStar/public/js/search.js";
 >
-> Line : 0 ;
+> Line : [Begin : End] ;
 >
-> Other prompt : " ";
+> Other prompt : "It's very clear.";
 
 - [x] The web application utilize Bootstrap interface elements.
 
-> File path : "/";
->
-> Line : 0 ;
->
-> Other prompt : " ";
+> Other prompt : "It's very clear.";
 
 - [x] The web application utilize AJAX.
 
-> File path : "/";
+> File path : "/SysGithubStar/public/js/search.js";
 >
-> Line : 0 ;
+> Line : [134 : 153] ;
 >
-> Other prompt : " ";
+> ```
+> for(var v of star_json){
+>             var star_id = v["star_id"];
+>             addHookToSyncButtonByStarId(v["star_id"],star_id,function (event){
+>                 var tag_unit = getTagByStarId(event.data.star_id);
+>
+>                 var star_unit = getStarUnitByStarId(event.data.star_id);
+>                 //post to tag & star sync;
+>                 var sync_tag_url = root + "/tag/database/sync";
+>                 var sync_star_url = root + "/star/database/sync";
+>
+>                 for(var s of tag_unit){
+>                     $.post(sync_tag_url,s).done(function( data ) {
+>                         console.log("tag sync success");
+>                     });   
+>                 }
+>
+>                 $.post(sync_star_url,star_unit).done(function( data ) {
+>                     console.log("star sync success");
+>                 });
+>             });
+> ```
+>
+> 
+>
+> Other prompt : "It's very clear.";
 
 ### Usage
 
 ``` 
-./a.out username > star_raw.json (根据用户名抓取该用户的Star.json) 
-./a_1.out (根据star_raw.json筛选有用字段生成star.json 文件)
-./b.out search > part Of star.json (在已知star.json的情况下根据部分词匹配合适的项目)
-./c.out add -repo {repo_name} -tag {tag_name} 加入某repo的tag
-./c.out del -repo {repo_name} -tag {tag_name} 删除某repo的tag
-./c.out delall -repo {repo_name} 删除某repo的所有tag
-./d.out add -repo {repo_name} -des {description string} 加入某repo的description
-如果没有手动加入则制空
-./d.out del -repo {repo_name} 删除某repo的所有description
-./e.out 根据 [Json文件 | 数据库记录] > 生成 markdown 文档 : Readme.md 同时 
-提交 star.lock.json
+
 ```
 
 ### Install 
@@ -288,7 +313,7 @@ php artisan migrate
 
 ## Route-Pic
 
-[]()
+[route](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/route.png)
 
 
 
