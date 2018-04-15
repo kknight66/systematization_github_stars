@@ -4,7 +4,7 @@
 
 ### Test URL
 
--  http://asdfasdfasdf
+-  http://ec2-18-221-156-187.us-east-2.compute.amazonaws.com
 
 ---
 
@@ -181,7 +181,18 @@
 
 ```bash
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
 ```
+
+- Install de
+
+```
+sudo apt-get install php-mbstring
+sudo apt-get update
+sudo apt-get install php-xml
+```
+
+
 
 - Install Laravel
 
@@ -207,9 +218,11 @@ composer create-project laravel/laravel SysGithubStar ^5.5
 
   ```bash
   sudo a2enmod rewrite # 引入Mod
+  cd /etc/apache2/
   sudo vim apache2.conf # 更改 apache 配置文件
   # 将 <Directory /var/www/> </Directory> 中 AllowOverride 项 改成 AllowOverride all
   service apache2 restart # 重启 apache
+  sudo chmod -R 777 SysGithubStar/
   ```
 
 - Enable Auth 
@@ -254,6 +267,13 @@ sudo vim .env # 编辑 .env 文档
 php artisan make:migration create_star_table
 php artisan make:migration create_tag_table
 php artisan migrate
+```
+
+- 一些丑陋的工作
+
+```
+sudo vim routes/web.php
+删除掉AUTH 部分
 ```
 
 
