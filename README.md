@@ -2,6 +2,11 @@
 
 ---
 
+### Authors
+- Huiming Sun <- Back-End
+- JiaNan Ni <- Scrum Manager
+- Hao Ding , Yujia , Jianan Ni <- Front-End
+
 ### Test URL
 
 -  http://ec2-18-221-156-187.us-east-2.compute.amazonaws.com
@@ -173,7 +178,7 @@
 
 ### Install 
 
-#### without docker in Ubuntu
+#### Without Docker In Ubuntu 16.04
 
 - Install Composer
 
