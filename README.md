@@ -4,8 +4,8 @@
 
 ### Authors
 - Huiming Sun <- Back-End
-- JiaNan Ni <- Scrum Manager
-- Hao Ding , Yujia , Jianan Ni <- Front-End
+- Jianan Ni <- Scrum Manager
+- Hao Ding , Yujia Wang, Jianan Ni <- Front-End
 
 ### Test URL
 
