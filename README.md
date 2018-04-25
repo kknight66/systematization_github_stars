@@ -287,7 +287,7 @@ Remove AUTH section
 ### Project Organization
 
 ```
-- composer 类文件 composer.json , composer.lock 
+- composer composer.json , composer.lock 
 (PHP's Project Package Management System Is Similar To ruby:gem ; python:pip ; java:maven;javascript:npm)
 - /public place js & css
 	/js app.js
