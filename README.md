@@ -17,7 +17,7 @@
 <!-- /TOC -->
 
 ## Systematization GitHub Stars
-
+- This project is driven by agile development SCRUM. : )
 ---
 
 ### Authors
