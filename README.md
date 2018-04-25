@@ -22,8 +22,6 @@
 - Basic < PHP : Programming language
 - Ad < Docker : Virtualization container
 - Ad < Laravel : PHP Framework
-- Ad < Vue.js : Framework
-
 ---
 
 ###  Characteristics & Requirements 
