@@ -1,3 +1,21 @@
+<!-- TOC -->
+
+- [Systematization GitHub Stars](#systematization-github-stars)
+    - [Authors](#authors)
+    - [Test URL](#test-url)
+    - [Screenshots](#screenshots)
+    - [Technology stack](#technology-stack)
+    - [Characteristics & Requirements](#characteristics--requirements)
+    - [Install](#install)
+        - [Without Docker In Ubuntu 16.04](#without-docker-in-ubuntu-1604)
+        - [With Docker](#with-docker)
+    - [Project Organization](#project-organization)
+    - [Route](#route)
+    - [Route-Pic](#route-pic)
+    - [Other](#other)
+
+<!-- /TOC -->
+
 ## Systematization GitHub Stars
 
 ---
