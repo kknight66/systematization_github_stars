@@ -18,6 +18,13 @@
 
 ## Systematization GitHub Stars
 - This project is driven by agile development SCRUM. : )
+[![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
+
+[![](https://img.shields.io/badge/Progress-90%25-yellow.svg)]()
+
+[![Code Climate](https://img.shields.io/badge/issue-10-orange.svg)]()
+
+[![](https://img.shields.io/badge/author-Huiming%20|%20Dinghao%20|%20Jianan%20|%20YuJia-red.svg)]()
 ---
 
 ### Authors
