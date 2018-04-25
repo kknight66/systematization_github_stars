@@ -170,12 +170,6 @@
 >
 > Other prompt : "It's very clear.";
 
-### Usage
-
-``` 
-
-```
-
 ### Install 
 
 #### Without Docker In Ubuntu 16.04
