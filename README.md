@@ -15,7 +15,7 @@
 
 ### Screenshots 
 
-[ScreenShots](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/777.gif)
+![ScreenShots](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/777.gif)
 
 ---
 
