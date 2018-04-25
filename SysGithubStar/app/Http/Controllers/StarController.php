@@ -14,7 +14,7 @@ class StarController extends Controller
             $userId = Auth::id();
             $userName = Auth::user()->name;
             $filename = $userName . '.md';
-            $currentStr = StarController::getMarkDownStrByUserId($userId);
+            $currentStr = StarController::getMarkDownStrByUserId($userId,$userName);
             $tempFile = tempnam(sys_get_temp_dir(), $filename);
             file_put_contents($tempFile, $currentStr);
             return response()->download($tempFile, $filename);
@@ -23,13 +23,52 @@ class StarController extends Controller
         }
     }
 
-    protected function getMarkDownStrByUserId($userId){
-        $star_info = StarController::getStarDataByUserId($user_id); // getStarInfoOfUser
-
+    protected function getMarkDownStrByUserId($userId,$userName){
+        $returnStr = "## " . $userName . "'s Search Result\n---\n\n";
+        $star_info = StarController::getStarDataByUserId($userId); // getStarInfoOfUser
         $TagController = new Tagcontroller();
         $tag_info = $TagController->getTagDataByUserId($userId); // getTagInfoOfUser
-         
-        return "## asd\n---\n-a\n-b\n-c\n";
+
+        
+        foreach($star_info as $v){
+            $starId = $v["id"];
+            $tags = array();
+
+            $returnStr .= "### ";
+            $returnStr .= $v["full_name"];
+            $returnStr .= "\n- **URL** : ";
+            $returnStr .= $v["html_url"];
+            $returnStr .= "\n- **Description** : ";
+            $returnStr .= $v["description"];
+            $returnStr .= "\n- **StarCount** : ";
+            $returnStr .= $v["stargazers_count"];
+            $returnStr .= "\n- **Language** : ";
+            $returnStr .= $v["language"];
+            $returnStr .= "\n- **License** : ";
+            $returnStr .= $v["license"];
+            $returnStr .= "\n- **OwnerPage** : ";
+            $returnStr .= $v["owner_url"];
+            $returnStr .= "\n- **OwnerName** : ";
+            $returnStr .= $v["owner_name"];
+            $returnStr .= "\n- **Tags** : ";
+            
+            foreach($tag_info as $t){
+                if($t["star_id"] == $starId){
+                    array_push($tags,$t["tag_name"]);
+                }
+            }
+
+            foreach($tags as $a){
+                $returnStr .= $a;
+                $returnStr .= "  ";
+            }
+
+
+            $returnStr .= "\n\n";
+        }
+    
+        //return $returnStr;
+        return $returnStr;
     }
 
 
@@ -62,6 +101,24 @@ class StarController extends Controller
     protected function filtedJsonFromData($unfilted_json_data, $userId = null){
         $filted_json_data = array();
         
+                if(empty($unfilted_json_data)){
+                    $a = array();
+                    $a["full_name"]="";
+                    $a["part_name"]="";
+                    $a["html_url"]="";
+                    $a["description"]="";
+                    $a["stargazers_count"]="";
+                    $a["language"]="";
+                    $a["license"]="";
+                    $a["owner_url"]="";
+                    $a["owner_name"]="";
+                    $a['user_id'] = null;
+                    $a['star_id'] = null;
+                   
+                    array_push($filted_json_data,$a);
+                    return $filted_json_data;
+                }
+
                 //过滤出需要的JSON
                 foreach($unfilted_json_data as $v){
                     $a = array();
@@ -98,7 +155,11 @@ class StarController extends Controller
         );
         //根据 GITHUB DEVELOPER 文档 构造 URL https://api.github.com/users/{UserName}/starred?page={?};
         $url = 'https://api.github.com/users/' . $gitHubName . '/starred' . "?page=" . $page;
-        $json = file_get_contents($url,false,$fake_header);
+        try{
+        $json = @file_get_contents($url,false,$fake_header);
+        }catch(Exception $e){
+            return array();
+        }
         $unfilted_json_data = json_decode($json, true);
         $filted_json_data = StarController::filtedJsonFromData($unfilted_json_data,$userId);
         return $filted_json_data;
@@ -115,7 +176,11 @@ class StarController extends Controller
         )
     );
     $url = 'https://api.github.com/users/' . $gitHubName . '/starred';
-    $json = file_get_contents($url,false,$fake_header);
+    try{
+    $json = @file_get_contents($url,false,$fake_header);
+    }catch(Exception  $e){
+        return 0;
+    }
     $response_header = $http_response_header;
     $str = $response_header[14];
 
@@ -125,6 +190,11 @@ class StarController extends Controller
     //$result[1] 匹配结果
     preg_match_all("/page=(.+?)>/i",$str, $result); 
     
+    if($result[1] != null && !empty($result[1])){
+        return max($result[1]);
+    }else{
+        return 0;
+    }
     //返回最大的，即为Last
     return max($result[1]); 
     }
