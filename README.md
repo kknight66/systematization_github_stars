@@ -205,13 +205,13 @@ composer create-project laravel/laravel SysGithubStar ^5.5
 
 - Install Apache
 
-- 配置 Apache 配置文件
+- Configure The Apache Configuration File
 
   ```
   cd /etc/apache2/
   cd sites-available/
   sudo vim 000-default.conf
-  # 更改 为 
+  # Change To
   DocumentRoot /var/www/html/SysGithubStar/public/
   ```
 
@@ -220,36 +220,38 @@ composer create-project laravel/laravel SysGithubStar ^5.5
 - Enable Apache rewrite mod ; make sure Laravel 's Route rules work.
 
   ```bash
-  sudo a2enmod rewrite # 引入Mod
+  sudo a2enmod rewrite # install rewrite Mod
   cd /etc/apache2/
-  sudo vim apache2.conf # 更改 apache 配置文件
-  # 将 <Directory /var/www/> </Directory> 中 AllowOverride 项 改成 AllowOverride all
-  service apache2 restart # 重启 apache
+  sudo vim apache2.conf # Change The Apache Configuration File
+  # Change Config in <Directory /var/www/> </Directory> : AllowOverride To AllowOverride all
+  service apache2 restart # restart apache
   sudo chmod -R 777 SysGithubStar/
   ```
 
 - Enable Auth 
 
 ```bash
-./artisan | grep "auth" # 观看和 auth 相关的命令行参数 
+./artisan | grep "auth" # Watching auth related command line arguments
 php artisan make:auth #  Scaffold basic login and registration views and routes
-ls -al # 可以看到 .env 已被创建
-mysql -u root -p passwd # 进入数据库 并 创建一个 以 utf8mb4 为默认格式的新库
+ls -al # You can see that .env was created
+mysql -u root -p passwd # Enter the database and create a new library with utf8mb4 as the default format
 > CREATE DATABASE `sysgithubstar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-sudo vim .env # 编辑 .env 文档
+sudo vim .env # Edit the .env document
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=sysgithubstar
 DB_USERNAME=root
 DB_PASSWORD=passwd
-php artisan migrate # 数据库迁移 生成 未创建的表
+
+php artisan migrate # Database Migration Generated Uncreated Table
 ```
 
 - Enable Email (For "Forgot Your Password & Reset Your Password")
 
 ```bash
-sudo vim .env # 编辑 .env 文档
+sudo vim .env # Edit the .env document
   1 APP_NAME=yourAppName
   2 APP_ENV=local
   3 APP_KEY=yourkey
@@ -272,11 +274,11 @@ php artisan make:migration create_tag_table
 php artisan migrate
 ```
 
-- 一些丑陋的工作
+- Some ugly work
 
 ```
 sudo vim routes/web.php
-删除掉AUTH 部分
+Remove AUTH section
 ```
 
 
@@ -288,22 +290,22 @@ sudo vim routes/web.php
 
 ---
 
-### 项目组织
+### Project Organization
 
 ```
 - composer 类文件 composer.json , composer.lock 
-(PHP 项目包管理系统类似于 ruby:gem ; python:pip ; java:maven;javascript:npm)
-- /public 放置 js & css
+(PHP's Project Package Management System Is Similar To ruby:gem ; python:pip ; java:maven;javascript:npm)
+- /public place js & css
 	/js app.js
 	/css Bootstrap v3.3.7
-- /resource 放置 前端资源
-	- /views 放置 PHP 模板
-- /vendor 放置 在 composer.json 中 描述的依赖库
-- /routes 放置 描述 routes rules 的文件 
-- /app 后端相关文件
-	- /Console 用于终端命令行
-	- /Exceptions 异常
-	- /Http/Controller 放置Controller 用于(MVC) 
+- /resource Placement Front-end resources
+	- /views Place A PHP Template
+- /vendor Place in composer.json The dependency library described in
+- /routes Place files that use to description routes rules  
+- /app Backend Related Files
+	- /Console Used for terminal command line
+	- /Exceptions Exception
+	- /Http/Controller Place Controller (MVC) 
 ```
 
 ## Route
@@ -339,36 +341,17 @@ sudo vim routes/web.php
 ![route](https://github.com/bamboovir/systematization_github_stars/blob/master/ReadMeIMG/route.png)
 
 
-
-
-
-
-
-
-
-
-
 ## Other
 
 ```
-根据 GITHUB API：
+According To GITHUB API：
 Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with the ?page parameter. For some resources, you can also set a custom page size up to 100 with the ?per_page parameter. Note that for technical reasons not all endpoints respect the ?per_page parameter, see events for example.
-关于分页:
+About Paging :
 https://developer.github.com/v3/guides/traversing-with-pagination/
 
-header 中 Link:
+Link In Header:
 <https://api.github.com/user/24313133/starred?page=1&q=addClass+user%3Amozilla>; rel="prev", <https://api.github.com/user/24313133/starred?page=3&q=addClass+user%3Amozilla>; rel="next", <https://api.github.com/user/24313133/starred?page=8&q=addClass+user%3Amozilla>; rel="last", <https://api.github.com/user/24313133/starred?page=1&q=addClass+user%3Amozilla>; rel="first"
 ```
-
-
-
-```
-页面导航
-/ -> index.php (上面字符串视频嵌入 下面是用过的人的截图和评论 中间是去主页面的按钮) -> 
--> systar_home.php (主功能区 搜索框 错误提示 通过 jQuery post UserName 到 返回 JSON ,根据返回的JSON javascript 构造 前端) (同时可以解析 经过用户处理的JSON 并显示出来) 用户可以给UNIT 添加 description 和 Tag）（为了根据界面逆向生成相应的JSON，需要一个新的parseHTML -> JSON 的javascript函数）（使用JSON 生成 Markdown 文件）
--> systar_fun.php (根据 POST 过来的数据 来 获取 JSON map 到 新 JSON)
-```
-
 
 
 - Enjoy & Cheers :)
