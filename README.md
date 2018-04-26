@@ -30,9 +30,43 @@
 ---
 
 ### Authors
-- Huiming Sun <- Back-End
-- Jianan Ni <- Scrum Manager
-- Hao Ding , Yujia Wang, Jianan Ni <- Front-End
+> Huiming Sun
+``` 
+{
+    ALL Front And Back Ends Job;
+    (Write ALL PHP Code)
+    (Write ALL JavaScript & JQuery Code)
+    (Design Website Routing)
+    (Write ALL HTML5 & CSS3 Code)
+    (Write Docker File) [Not Complete Yet]
+}
+```
+> Jianan Ni <- Scrum Manager
+```
+{
+    Record AxoSoft Features;
+    Division of labor and responsibility to Scrum Manager;
+    Monitor website logs
+    Disaster recovery   
+}
+```
+
+> Hao Ding 
+```
+{
+    Create a LAMP stack
+    Operation and maintenance 
+    management and backup server and database
+    Optimize linux kernel network parameters
+}
+```
+> Yujia Wang
+```
+{
+    Photo resources and reviews;
+    Website layout design concept illustration;
+}
+```
 
 ### Test URL
 
